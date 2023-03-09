@@ -8,9 +8,23 @@ class HelloServiceTest {
 
     @Test
     void helloServiceTest() {
-        SimpleHelloService simpleHelloService = new SimpleHelloService();
+        SimpleHelloService simpleHelloService = new SimpleHelloService(getHelloRepository());
         String ret = simpleHelloService.sayHello("Test");
         assertThat(ret).isEqualTo("Hello Test");
+    }
+
+    private static HelloRepository getHelloRepository() {
+        return new HelloRepository() {
+            @Override
+            public Hello findHello(String name) {
+                return null;
+            }
+
+            @Override
+            public void increaseCount(String name) {
+
+            }
+        };
     }
 
     @Test

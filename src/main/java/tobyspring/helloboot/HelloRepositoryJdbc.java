@@ -33,4 +33,10 @@ public class HelloRepositoryJdbc implements HelloRepository {
             jdbcTemplate.update("update hello set count = ?  where name = ?", hello.getCount() + 1, name);
         }
     }
+
+    @Override
+    public int countOf(String name) {
+        Hello hello = findHello(name);
+        return hello == null ? 0 : hello.getCount();
+    }
 }
